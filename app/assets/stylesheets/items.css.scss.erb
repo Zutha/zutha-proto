@@ -1,0 +1,65 @@
+// Place all the styles related to the Items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "compass/css3/border-radius";
+
+$default-border-radius: 10px; 
+
+.item {
+	border: {
+		style: solid;
+		width: 1px;
+		color: blue;
+	}
+	padding-bottom: 1em;
+	@include border-radius;
+	margin-bottom: 3px;
+	padding: 4px;
+
+	.rating-ctrls {
+		float: left;
+		margin: {
+			top: 5px;
+			left: 7px;
+			right: 5px;
+		}
+		width:5ex;
+
+		.arrow {
+			width: 18px;
+			height: 15px;
+			margin-left: auto;
+			margin-right: auto;
+
+			&.up {
+				background-image: url(up-arrow.gif);
+			}
+			&.down {
+				background-image: url(down-arrow.gif);
+			}
+		}
+
+		.rating {
+			text-align: center;
+		}
+	}
+
+	.entry {
+		overflow: hidden;
+		margin-left: 3px;
+
+		h2 {
+			margin: {
+				top: 8px;
+				bottom: 8px;
+			}
+		}
+
+		.edit-links {
+			float:right;
+		}
+	}
+}
+
+

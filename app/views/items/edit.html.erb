@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
+<%= link_to 'Back', items_path %> |
 <%= link_to 'Show', @item %> |
-<%= link_to 'Back', items_path %>
+<%= link_to 'Destroy', @tem, confirm: 'Are you sure?', method: :delete %>
+

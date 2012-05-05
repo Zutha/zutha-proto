@@ -8,16 +8,24 @@
 </head>
 <body>
 
-	<div id="nav">
+	<div id="user_nav">
 		<% if user_signed_in? %>
 			Signed in as <%= current_user.email %>.
 			<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
 		<% else %>
-			<%= link_to_rpx "Signin", user_session_url %>
+			<%= link_to_rpx "Sign in", user_session_url %>
 		<% end %>
     </div>
     
-<%= yield %>
+    <div id="header">
+		<%- flash.each do |name, msg| -%>
+			<%= content_tag :div, msg, :id => name %>
+		<%- end -%>
+	</div>
+
+	<div id="container">
+		<%= yield %>
+	</div>
 
 <%= javascript_include_rpx(user_session_url) %>
 </body>

@@ -1,24 +1,27 @@
 <h1>Listing items</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @items.each do |item| %>
-  <tr>
-    <td><%= item.name %></td>
-    <td><%= item.description %></td>
-    <td><%= link_to 'Show', item %></td>
-    <td><%= link_to 'Edit', edit_item_path(item) %></td>
-    <td><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <div class="item">
+    <div class="rating-ctrls">
+      <div class="arrow up"></div>
+      <div class="rating">
+        <div class="worth"><%= item.worth %></div>
+        <% if user_signed_in? %>
+          <div class="user-rating">( <span> item.rating_by_user(current_user) %></span> )</div>
+        <% end %>
+      </div>
+      <div class="arrow down"></div>
+    </div>
+    <div class="entry">
+      <div class="edit-links">
+        <span><%= link_to 'Edit', edit_item_path(item) %></span>
+      </div>
+      <h2><%= link_to item.name, item %></h2>
+      <p><%= item.description %></p>
+    </div>
+  </div>
 <% end %>
-</table>
 
 <br />
 
