@@ -56,6 +56,11 @@ module ZuthaProto
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # use haml to generate new views
+    config.generators do |g|
+        g.template_engine :haml
+    end
+
     #Janrain Engage (RPX)
     RPXNow.api_key = "b2c5c102e6a31f751226f42e3d0d8255f53379e0"
   end

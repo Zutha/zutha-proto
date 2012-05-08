@@ -1,7 +1,15 @@
 ZuthaProto::Application.routes.draw do
   devise_for :users
 
-  resources :items
+  resources :items do
+
+    resources :investments, :only=> [:show ] do
+      collection do
+        post :buy
+        post :sell
+      end
+    end
+  end
 
   root :to => "home#index"
 

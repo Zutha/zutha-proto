@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120503202042) do
+ActiveRecord::Schema.define(:version => 20120508021536) do
 
   create_table "investments", :force => true do |t|
-    t.float    "h"
+    t.float    "h",          :default => 0.0, :null => false
     t.integer  "user_id"
     t.integer  "item_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "investments", ["item_id"], :name => "index_investments_on_item_id"
@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(:version => 20120503202042) do
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "fullname"
-    t.float    "reputation"
-    t.float    "zuth"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.float    "reputation",             :default => 0.0, :null => false
+    t.float    "zuth",                   :default => 0.0, :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.string   "email",                  :default => ""
     t.string   "encrypted_password",     :default => ""
     t.string   "reset_password_token"
