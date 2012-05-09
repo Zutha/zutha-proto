@@ -26,6 +26,8 @@ $(function(){
 			iwObj.html( iwNew );	
 			ubObj.html( ubNew );
 			urObj.html( urNew );
+			
+			urObj.parent().show();
 		}
 	});
 
@@ -53,6 +55,10 @@ $(function(){
 			iwObj.html( iwNew );	
 			ubObj.html( ubNew );
 			urObj.html( urNew );
+			
+			if(urNew == 0){
+				urObj.parent().hide();
+			}
 		}
 	});
 
