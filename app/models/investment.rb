@@ -1,6 +1,12 @@
 class Investment < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :item
+	
+	validates_each :h do |record, attr, value|
+		if value < 0
+			record.errors.add(attr, attr + " cannot be negative")
+		end
+	end
 
 	K = 1.5
 
@@ -17,12 +23,20 @@ class Investment < ActiveRecord::Base
 			item.save!
 			self.save!
 		end
+		item.errors.empty?
 	end
 
 	def sell(amount)
+		v = value
 		h0 = item.pos_market_height
-		h1 = (h0**K - amount)**(1/K)
-		dh = h0 - h1
+		if amount >= v
+			amount = v
+			dh = self.h
+			h1 = h0 - dh
+		else
+			h1 = (h0**K - amount)**(1/K)
+			dh = h0 - h1
+		end
 
 		item.transaction do
 			user.receive(amount)
@@ -32,6 +46,7 @@ class Investment < ActiveRecord::Base
 			item.save!
 			self.save!
 		end
+		item.errors.empty?
 	end
 
 	def value

@@ -1,9 +1,19 @@
 .voting
-  - investment = item.investment_of current_user
-  = link_to "", buy_item_investments_path(item), :class=> 'vote up', :title=> "Rate up", :'data-method'=> :post, :'data-type'=> 'html', :remote=> true, :rel => "nofollow"
-  .rating.item-worth
-    = item.worth.round(1)
-  - if investment
-    .rating.user-rating
-      (#{investment.value.round(1)})
-  = link_to "", sell_item_investments_path(item), :class=> 'vote down', :title=> "Rate down", :'data-method'=> :post, :'data-type'=> 'html', :remote=> true, :rel => "nofollow"
+	- if user_signed_in?
+		- user_rating = user_rating(item)
+		= button_to "", buy_item_investments_path(item), :remote=> true, |
+			:form => {:class=> 'vote up', :'data-type'=> 'json'}
+	- else
+		.vote.up
+
+	.rating.item-worth
+		= item.worth.round(1)
+	- if user_signed_in?
+		.rating{:style => user_rating == 0 ? "display:none" : ""}<
+			(
+			%span.user-rating>= user_rating
+			)
+		= button_to "", sell_item_investments_path(item), :remote=> true, |
+			:form => {:class=> 'vote down', :"data-type"=> 'json'}
+	- else
+		.vote.down

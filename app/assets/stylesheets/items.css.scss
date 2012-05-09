@@ -2,6 +2,10 @@
 
 $default-border-radius: 10px; 
 
+h1 {
+	text-align: center;
+}
+
 .item {
 	border: {
 		style: solid;
@@ -19,23 +23,30 @@ $default-border-radius: 10px;
 		float: left;
 		margin: {
 			top: 5px;
-			left: 7px;
-			right: 5px;
+			left: 8px;
+			right: 8px;
 		}
 		width:5ex;
 
 		.voting {
-			.vote {
+			.vote input {
+				border: 0;
+				background: #fff;
+				color: #236cb0;
+				outline: none;
+				cursor: pointer;
+
 				width: 18px;
 				height: 15px;
 				margin-left: auto;
 				margin-right: auto;
 				display: block;
-
-				&.up {
+			}
+			.vote {
+				&.up input {
 					background-image: url(up-arrow.gif);
 				}
-				&.down {
+				&.down input {
 					background-image: url(down-arrow.gif);
 				}
 			}
@@ -47,19 +58,14 @@ $default-border-radius: 10px;
 		
 	}
 
-	.entry {
-		overflow: hidden;
-		margin-left: 3px;
+	header {
+		float:right;
+	}
 
-		h2 {
-			margin: {
-				top: 8px;
-				bottom: 8px;
-			}
-		}
-
-		.edit-links {
-			float:right;
+	h2 {
+		margin: {
+			top: 8px;
+			bottom: 8px;
 		}
 	}
 }

@@ -7,7 +7,13 @@ class User < ActiveRecord::Base
 	# Setup accessible (or protected) attributes for your model
 	attr_accessible :reputation, :zuth, :email, :password, :password_confirmation, :remember_me
 
-	has_many :investments
+	has_many :investments, :dependent => :destroy
+
+	validates_each :zuth do |record, attr, value|
+		if value < 0
+			record.errors.add(attr, "user's zuth balance cannot be negative")
+		end
+	end
 
 	def spend(amount)
 		self.zuth -= amount

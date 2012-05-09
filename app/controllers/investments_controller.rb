@@ -1,10 +1,11 @@
 class InvestmentsController < ApplicationController
+  include InvestmentHelper, ApplicationHelper
 
   before_filter :authenticate_user!
 
   expose(:item) { Item.find params[:item_id] }
   expose(:investment) {
-    found = Investment.where(:user_id => current_user, :item_id => item).first
+    found = item.investment_of current_user
     if found
       found
     else
@@ -15,17 +16,23 @@ class InvestmentsController < ApplicationController
   before_filter :setup_investment
 
   def buy
-    investment.buy(1)
+    default = current_user.zuth >= 5 ? 1.0 : 0.1
+    investment.buy(amount || default)
     refresh
   end
 
   def sell
-    investment.sell(1)
+    default = 1.0
+    investment.sell(amount || default)
     refresh
   end
 
 
 protected
+  
+  def amount
+    params[:amount] && params[:amount].to_f
+  end
 
   def setup_investment
     investment.user = current_user
@@ -34,7 +41,14 @@ protected
   def refresh
     item.reload
     investment.reload
-    render investment
+
+    obj = {
+      :item_worth => pretty_round(item.worth), 
+      :user_rating => user_rating(item),
+      :user_balance => pretty_round(current_user.zuth)
+    }
+    render :json => obj
   end
+
 
 end
