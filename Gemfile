@@ -9,6 +9,8 @@ gem 'decent_exposure'
 
 # View
 gem 'jquery-rails'
+gem 'sass-rails'
+gem 'haml-rails'
 
 # Auth
 gem 'devise'
@@ -20,18 +22,16 @@ gem "devise_rpx_connectable"
 # Servers
 gem 'thin'
 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails'
-  gem 'haml'
-  gem 'compass-rails'
-  gem 'coffee-rails'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
-
-  gem 'uglifier', '>= 1.0.3'
+	gem 'compass-rails'
+	gem 'coffee-rails'
+	gem 'uglifier', '>= 1.0.3'
+	
+	# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+	# gem 'therubyracer'
 end
 
 group :development do
@@ -39,7 +39,7 @@ group :development do
 	gem 'sqlite3'
 end
 group :production do
-  gem 'pg'
+	gem 'pg'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
