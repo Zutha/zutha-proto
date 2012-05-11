@@ -14,7 +14,10 @@ gem 'haml-rails'
 
 # Auth
 gem 'devise'
+gem 'rpx_now'
 gem "devise_rpx_connectable"
+gem 'omniauth-facebook'
+gem 'omniauth-openid'
 # gem 'authlogic', '= 2.1.6'
 # gem 'rpx_now', '= 0.6.23'
 # gem 'authlogic_rpx', '= 1.2.0'
@@ -22,6 +25,8 @@ gem "devise_rpx_connectable"
 # Servers
 gem 'thin'
 
+# Debugger
+# gem 'ruby-debug19', :require => 'ruby-debug'
 
 # Gems used only for assets and not required
 # in production environments by default.

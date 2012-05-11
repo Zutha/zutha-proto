@@ -1,26 +1,34 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+
   #Janrain Engage (RPX)
   config.rpx_application_name = "Zutha" # The name of your RPX application (this is the name, NOT the API key!)
+  config.rpx_identifier_field = :identifier
+  config.rpx_additional_user_data = [:name, :displayName]
 
+  # ==> OmniAuth
+  # Add a new OmniAuth provider. Check the wiki for more information on setting
+  # up on your models and hooks.
+  # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
-  # ==> Mailer Configuration
-  # Configure the e-mail address which will be shown in Devise::Mailer,
-  # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
+  # ==> Warden configuration
+  # If you want to use other strategies, that are not supported by Devise, or
+  # change the failure app, you can configure them inside the config.warden block.
+  #
+  # config.warden do |manager|
+  #   manager.intercept_401 = false
+  #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
+  # end
 
-  # Configure the class responsible to send e-mails.
-  # config.mailer = "Devise::Mailer"
+  require 'openid/store/filesystem' 
+  # OpenID
+  config.omniauth :open_id, :store => OpenID::Store::Filesystem.new('./tmp'), :require => 'omniauth-openid'
+  # Google
+  config.omniauth :open_id, :store => OpenID::Store::Filesystem.new('./tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id', :require => 'omniauth-openid'
+  # Facebook
+  config.omniauth :facebook, "381887905200819", "ef7d590105c1422f8e529433ccc12811"
 
-  # Automatically apply schema changes in tableless databases
-  config.apply_schema = false
-
-  # ==> ORM configuration
-  # Load and configure the ORM. Supports :active_record (default) and
-  # :mongoid (bson_ext recommended) by default. Other ORMs may be
-  # available as additional gems.
-  require 'devise/orm/active_record'
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -30,7 +38,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [ :email ]
+  config.authentication_keys = [ :identifier ]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -78,6 +86,18 @@ Devise.setup do |config|
   # may want to disable generating routes to Devise's sessions controller by
   # passing :skip => :sessions to `devise_for` in your config/routes.rb
   config.skip_session_storage = [:http_auth]
+
+
+
+
+
+
+
+
+
+
+
+
 
   # ==> Configuration for :database_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 10. If
@@ -211,17 +231,21 @@ Devise.setup do |config|
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 
-  # ==> OmniAuth
-  # Add a new OmniAuth provider. Check the wiki for more information on setting
-  # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
+  # ==> Mailer Configuration
+  # Configure the e-mail address which will be shown in Devise::Mailer,
+  # note that it will be overwritten if you use your own mailer class with default "from" parameter.
+  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
 
-  # ==> Warden configuration
-  # If you want to use other strategies, that are not supported by Devise, or
-  # change the failure app, you can configure them inside the config.warden block.
-  #
-  # config.warden do |manager|
-  #   manager.intercept_401 = false
-  #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
-  # end
+  # Configure the class responsible to send e-mails.
+  # config.mailer = "Devise::Mailer"
+
+  # Automatically apply schema changes in tableless databases
+  config.apply_schema = false
+
+  # ==> ORM configuration
+  # Load and configure the ORM. Supports :active_record (default) and
+  # :mongoid (bson_ext recommended) by default. Other ORMs may be
+  # available as additional gems.
+  require 'devise/orm/active_record'
+
 end
