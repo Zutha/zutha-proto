@@ -1,0 +1,32 @@
+
+#panel {
+	overflow: auto;
+	width: 100%;
+	#logo {
+		float:left;
+	}
+	#account {
+		margin: auto;
+		text-align:center;
+	}
+	#user_nav {
+		float: right;
+		font-size: 12px;
+		padding-bottom:10px;
+	}
+}
+#notice {
+	text-align: center;
+}
+#container {
+	max-width: 1080px;
+	min-width: 100px;
+	margin: {
+		left: auto;
+		right: auto;
+	}
+	padding: {
+		left:2px;
+		right:8px;
+	}
+}

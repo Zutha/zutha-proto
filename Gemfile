@@ -18,6 +18,11 @@ gem 'rpx_now'
 gem "devise_rpx_connectable"
 gem 'omniauth-facebook'
 gem 'omniauth-openid'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-yahoo'
+gem 'omniauth-windowslive'
+
 # gem 'authlogic', '= 2.1.6'
 # gem 'rpx_now', '= 0.6.23'
 # gem 'authlogic_rpx', '= 1.2.0'

@@ -4,20 +4,13 @@
 		= stylesheet_link_tag 'application', :media => 'all'
 		= javascript_include_tag "application"
 		= csrf_meta_tags
+	
 	%body
-
+	
+	= render 'login_overlay'
+	
 	%header
-		#panel
-			= link_to image_tag("logo-beta.png", :height=>"48"), root_url, :id=>"logo"
-			
-			#user_nav
-				- if user_signed_in?
-					= "Signed in as %s." % current_user.email
-					= link_to "Sign out", destroy_user_session_path, :method => :delete
-				- else
-					= link_to_rpx "Sign in", user_session_url
-
-			= render 'users/account'
+		= render 'panel'
 
 		#notice
 			- flash.each do |name, msg|

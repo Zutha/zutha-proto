@@ -1,0 +1,110 @@
+/* Login Overlay */
+#loginCurtain {
+    position:absolute;
+    z-index: 998;
+    top: 0px;
+    left: 0px;
+    width:110%;
+    height:110%;
+    background-color: black;
+    opacity: 0.5;
+}
+#loginLayer{
+    position:absolute;
+    z-index: 999;
+    width:100%;
+}
+/* Login Box Container */
+#loginWrapper {
+    position:relative;
+    z-index: 1000;
+    margin: 20px auto;
+    min-width: 260px;
+    max-width: 440px;
+
+    .loginBorder{
+        border: 10px solid rgb(143, 199, 252);
+        border: 10px solid rgba(143, 199, 252, .4);
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+    }
+    .loginClose{
+        position:absolute;
+        height:42px;
+        width:42px;
+        overflow: hidden;
+        top:-10px;
+        left:-10px;
+        background-image: url(login-close2.png);
+        cursor: pointer;
+        outline: none;
+    }
+    .loginBox{
+        padding: 20px;
+        border: 1px solid #BDDBF7;
+        min-height: 140px;
+        max-height: 340px;
+        background-color: white;
+        text-align:center;
+    }
+}
+
+
+/* Provider Images */
+ul.providers {
+    padding: 0;
+    width: 150px;
+    margin: auto;
+    list-style-type: none;
+
+    li {
+        background: url(openid-logos.png) no-repeat;
+        height: 50px;
+        width: 150px;
+        padding: 0;
+        margin: 10px 0 8px 0;
+        cursor: pointer;
+
+        a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+li#google {
+    background-position: 0px 0px;
+}
+li#google:hover {
+    background-position: -150px 0px;
+}
+li#google.press {
+    background-position: -300px 0px;
+}
+li#openid {
+    background-position: 0px -250px;
+}
+li#openid:hover {
+    background-position: -150px -250px;
+}
+li#openid.press {
+    background-position: -300px -250px;
+}
+li#facebook {
+    background-position: 0px -50px;
+}
+li#facebook:hover {
+    background-position: -150px -50px;
+}
+li#facebook.press {
+    background-position: -300px -50px;
+}
+li#yahoo {
+    background-position: 0px -200px;
+}
+li#yahoo:hover {
+    background-position: -150px -200px;
+}
+li#yahoo.press {
+    background-position: -300px -200px;
+}

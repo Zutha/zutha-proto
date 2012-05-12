@@ -1,39 +1,45 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_filter :verify_authenticity_token, :only => [:google]
 
+  
+
   def open_id
-    @user = User.find_for_open_id(request.env["omniauth.auth"], current_user)
-    
-    if @user.persisted?
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "OpenID"
-      sign_in_and_redirect @user, :event => :authentication
-    else
-      session["devise.open_id_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
-    end
+    user = User.find_for_open_id(access_token)
+    log_in_user(user, "OpenID")
   end
 
-  def google
-    @user = User.find_for_open_id(request.env["omniauth.auth"], current_user)
+  def google_openid
+    user = User.find_for_open_id(access_token)
+    log_in_user(user, "Google")
+  end
 
-    if @user.persisted?
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"
-      sign_in_and_redirect @user, :event => :authentication
-    else
-      session["devise.google_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
-    end
+  def google_oauth2
+    user = User.find_for_google_oauth(access_token)
+    log_in_user(user, "Google")
   end
 
   def facebook
-    # You need to implement the method below in your model
-    @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)
+    user = User.find_for_facebook_oauth(access_token)
+    log_in_user(user, "Facebook")
+  end
+  
+  def windowslive
+    user = User.find_for_windowslive_oauth(access_token)
+    log_in_user(user, "Windows Live")
+  end
 
-    if @user.persisted?
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
-      sign_in_and_redirect @user, :event => :authentication
+protected
+  
+  def access_token 
+    request.env["omniauth.auth"] 
+  end
+
+  def log_in_user(user, provider_name)
+    if user.persisted?
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => provider_name
+      sign_in_and_redirect user, :event => :authentication
     else
-      session["devise.facebook_data"] = request.env["omniauth.auth"]
+      session["devise.omniauth_data"] = access_token
       redirect_to new_user_registration_url
     end
   end

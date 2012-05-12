@@ -26,11 +26,11 @@ class User < ActiveRecord::Base
 	end
 
 	# --- Omniauth signin ---
-	def self.find_for_open_id(access_token, signed_in_resource=nil)
+	def self.find_for_omniauth(access_token, id_prefix)
 	  data = access_token.info
-	  id = access_token.uid
+	  id = id_prefix + access_token.uid
 	  
-	  # logger.debug access_token.to_yaml
+	  logger.debug access_token.to_yaml
 
 	  if user = User.find_by_identifier(id)
 	    user
@@ -38,19 +38,21 @@ class User < ActiveRecord::Base
 	    User.create!(:identifier => id, :email => data.email, :name => data.name)
 	  end
 	end
-	
-	def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
-	  data = access_token.info
+	def self.find_for_open_id(access_token)
+	  find_for_omniauth(access_token,"")
+	end
+	def self.find_for_google_oauth(access_token)
+		prefix = "https://www.google.com/profiles/"
+	  find_for_omniauth(access_token,prefix)
+	end
+	def self.find_for_facebook_oauth(access_token)
 	  fbdata = access_token.extra.raw_info
-	  id = "http://www.facebook.com/profile.php?id=%s" % access_token.uid
-
-	  # logger.debug access_token.to_yaml
-
-	  if user = User.find_by_identifier(id)
-	    user
-	  else
-	    User.create!(:identifier => id, :email => data.email, :name => data.name)
-	  end
+	  prefix = "http://www.facebook.com/profile.php?id="
+		find_for_omniauth(access_token, prefix)
+	end
+	def self.find_for_windowslive_oauth(access_token)
+		prefix = ""
+	  find_for_omniauth(access_token,prefix)
 	end
 
 	# RPX/Engage
@@ -58,7 +60,6 @@ class User < ActiveRecord::Base
 		logger.debug "\n before_rpx_auto_create():"
 		logger.debug rpx_user.to_yaml
 		logger.debug self.to_yaml
-		
     # self.name = rpx_user.displayName
   end
 end
