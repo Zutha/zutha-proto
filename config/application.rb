@@ -66,5 +66,6 @@ module ZuthaProto
 
     #Janrain Engage (RPX)
     RPXNow.api_key = "b2c5c102e6a31f751226f42e3d0d8255f53379e0"
+
   end
 end

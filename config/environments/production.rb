@@ -1,5 +1,10 @@
 ZuthaProto::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+  
+  # Omniauth keys
+  FACEBOOK_APPID = "283032521789898"
+  FACEBOOK_SECRET = "08ee9adc2dc33f3cef52f146edf63c1c"
+
 
   # Code is not reloaded between requests
   config.cache_classes = true

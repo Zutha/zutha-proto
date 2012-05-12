@@ -28,7 +28,7 @@ Devise.setup do |config|
   config.omniauth :open_id, :store => OpenID::Store::Filesystem.new('./tmp'), :name => 'google_openid', :identifier => 'https://www.google.com/accounts/o8/id', :require => 'omniauth-openid'
   config.omniauth :google_oauth2, "487319941027.apps.googleusercontent.com", "fB9oOLbJkFD_sN1opCyS_9_N"
   # Facebook
-  config.omniauth :facebook, "381887905200819", "ef7d590105c1422f8e529433ccc12811"
+  config.omniauth :facebook, FACEBOOK_APPID, FACEBOOK_SECRET
   # Windows Live
   config.omniauth :windowslive, "00000000400C1F03", "7ETwoCoJuhTxBVzcEougO0p3QlcUNv29"
 
