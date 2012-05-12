@@ -6,10 +6,11 @@ class Item < ActiveRecord::Base
 		end
 	end
 
-
 	has_many :investments, :dependent => :destroy
 
 	attr_accessible :name, :description, :worth
+
+	scope :by_worth, order('worth DESC')
 
 	def investment_of(user)
 		self.investments.where(:user_id => user).first

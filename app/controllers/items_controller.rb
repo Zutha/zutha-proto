@@ -1,12 +1,12 @@
 class ItemsController < ApplicationController
+  expose(:items) { Item.by_worth }
+
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
-
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @items }
+      format.json { render json: items }
     end
   end
 
@@ -44,8 +44,8 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render json: @item, status: :created, location: @item }
+        format.html { redirect_to items_url, notice: 'Item was successfully created.' }
+        format.json { render json: items, status: :created, location: items_url }
       else
         format.html { render action: "new" }
         format.json { render json: @item.errors, status: :unprocessable_entity }
@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+        format.html { redirect_to items_url, notice: 'Item was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
