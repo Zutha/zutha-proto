@@ -1,19 +1,16 @@
 .voting
-	- if user_signed_in?
-		- user_rating = user_rating(item)
-		= button_to "", buy_item_investments_path(item), :remote=> true, |
-			:form => {:class=> 'vote up', :'data-type'=> 'json'}
-	- else
-		.vote.up
+	- user_rating = user_rating(item)
+	= button_to "", buy_item_investments_path(item), :remote=> true, |
+		:form => {:class=> 'vote up', :'data-type'=> 'json'}
 
 	.rating.item-worth
 		= item.worth.round(1)
+
 	- if user_signed_in?
 		.rating{:style => user_rating == 0 ? "display:none" : ""}<
 			(
 			%span.user-rating>= user_rating
 			)
-		= button_to "", sell_item_investments_path(item), :remote=> true, |
+
+	= button_to "", sell_item_investments_path(item), :remote=> true, |
 			:form => {:class=> 'vote down', :"data-type"=> 'json'}
-	- else
-		.vote.down

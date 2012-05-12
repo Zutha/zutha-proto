@@ -78,6 +78,13 @@ $(function(){
 		$('#balance').html(data.user_balance);
 	});
 
+	$(document).on('ajax:error', '.vote', function(event, xhr, status){
+		data = jQuery.parseJSON(xhr.responseText);
+		msg = data[status];;
+		$('#flash').html("<div class='"+status+"'>" + msg + "</div>")
+		$('#flash').delay(5000).fadeOut(2000)
+	});
+
 });
 
 // Helpers

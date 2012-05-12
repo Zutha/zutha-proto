@@ -12,9 +12,9 @@
 	%header
 		= render 'panel'
 
-		#notice
-			- flash.each do |name, msg|
-				= content_tag :div, msg, :id => name
+		#flash
+			- flash.each do |type, msg|
+				= content_tag :div, msg, :class => type
 
 	%section#container
 		= yield
