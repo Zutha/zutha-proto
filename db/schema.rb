@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120510225906) do
+ActiveRecord::Schema.define(:version => 20120513211739) do
 
   create_table "investments", :force => true do |t|
     t.float    "h",          :default => 0.0, :null => false
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20120510225906) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "identifier"
+    t.boolean  "admin"
   end
 
   add_index "users", ["identifier"], :name => "index_users_on_identifier", :unique => true

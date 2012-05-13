@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 	devise :omniauthable, :rpx_connectable, :rememberable, :trackable
 
 	# Setup accessible (or protected) attributes for your model
-	attr_accessible :identifier, :email, :name, :reputation, :zuth
+	attr_accessible :identifier, :email, :name, :reputation, :zuth, :admin
 
 	has_many :investments, :dependent => :destroy
 
