@@ -1,0 +1,19 @@
+%p
+	%b Name:
+	= @user.name
+%p
+	%b Zuth:
+	= @user.zuth.round(2)
+%p
+	%b Email:
+	= @user.email
+%p
+	%b Identifier:
+	= @user.identifier
+%p
+	%b Admin:
+	= @user.admin
+
+= succeed ' |' do
+	= link_to 'Edit', edit_user_path(@user) 
+= link_to 'Back', users_path

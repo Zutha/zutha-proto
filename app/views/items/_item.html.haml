@@ -1,10 +1,13 @@
 %article.item
-  %aside.actions
-    = render 'investments/investment', :item => item
+	%aside.actions
+		= render 'investments/investment', :item => item
 
-  %header
-    = link_to 'Edit', edit_item_path(item)
-  %h2
-    = link_to item.name, item
-  %p
-    = item.description
+	%header
+		= link_to 'Edit', edit_item_path(item)
+		- if admin?
+			|
+			= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete
+	%h2
+		= link_to item.name, item
+	%p
+		= item.description

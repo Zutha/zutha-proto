@@ -8,9 +8,8 @@
 
 	- if user_signed_in?
 		.rating{:style => user_rating == 0 ? "display:none" : ""}<
-			(
-			%span.user-rating>= user_rating
-			)
+			= surround '(', ')' do
+				%span.user-rating>= user_rating
 
 	= button_to "", sell_item_investments_path(item), :remote=> true, |
 			:form => {:class=> 'vote down', :"data-type"=> 'json'}
