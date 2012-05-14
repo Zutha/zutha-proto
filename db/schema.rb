@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120513211739) do
+ActiveRecord::Schema.define(:version => 20120514010244) do
 
   create_table "investments", :force => true do |t|
     t.float    "h",          :default => 0.0, :null => false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20120513211739) do
     t.datetime "updated_at",                         :null => false
     t.float    "worth",             :default => 0.0
     t.float    "pos_market_height", :default => 0.0
+    t.string   "url"
   end
 
   create_table "users", :force => true do |t|

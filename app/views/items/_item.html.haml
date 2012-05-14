@@ -8,6 +8,6 @@
 			|
 			= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete
 	%h2
-		= link_to item.name, item
+		= item.url ? link_to(item.name, item.url) : item.name
 	%p
 		= item.description
