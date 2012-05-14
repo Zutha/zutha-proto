@@ -2,16 +2,20 @@
   - if item.errors.any?
     #error_explanation
       %h2 
-        = pluralize(@item.errors.count, "error")
+        = pluralize(item.errors.count, "error")
         prohibited this item from being saved:
       %ul
-      - @item.errors.full_messages.each do |msg|
+      - item.errors.full_messages.each do |msg|
         %li= msg
 
   .field
     = f.label :name
     %br
     = f.text_field :name, :size=> 40
+  .field
+    = f.label :url
+    %br
+    = f.text_field :url
   .field
     = f.label :description 
     %br
