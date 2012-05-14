@@ -1,7 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  skip_before_filter :verify_authenticity_token, :only => [:google]
-
-  
+  def failure
+    super
+  end
 
   def open_id
     user = User.find_for_open_id(access_token)

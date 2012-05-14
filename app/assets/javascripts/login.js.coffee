@@ -1,8 +1,8 @@
 $ ->
 	$('#sign_in').click (e) =>
 		e.preventDefault()
-		$('#loginCurtain').show()
-		$('#loginLayer').show()
-	$('.loginClose').click =>
-		$('#loginCurtain').hide()
-		$('#loginLayer').hide()
+		$('#login_curtain').show()
+		$('#login_layer').show()
+	$('.login_close').click =>
+		$('#login_curtain').hide()
+		$('#login_layer').hide()

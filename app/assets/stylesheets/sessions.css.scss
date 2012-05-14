@@ -1,5 +1,5 @@
 /* Login Overlay */
-#loginCurtain {
+#login_curtain {
     position:absolute;
     z-index: 998;
     top: 0px;
@@ -9,26 +9,26 @@
     background-color: black;
     opacity: 0.5;
 }
-#loginLayer{
+#login_layer{
     position:absolute;
     z-index: 999;
     width:100%;
 }
 /* Login Box Container */
-#loginWrapper {
+#login_wrapper {
     position:relative;
     z-index: 1000;
     margin: 20px auto;
     min-width: 260px;
     max-width: 440px;
 
-    .loginBorder{
+    .login_border{
         border: 10px solid rgb(143, 199, 252);
         border: 10px solid rgba(143, 199, 252, .4);
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
     }
-    .loginClose{
+    .login_close{
         position:absolute;
         height:42px;
         width:42px;
@@ -39,16 +39,18 @@
         cursor: pointer;
         outline: none;
     }
-    .loginBox{
+    .login_box{
         padding: 20px;
         border: 1px solid #BDDBF7;
         min-height: 140px;
         max-height: 340px;
         background-color: white;
-        text-align:center;
     }
 }
 
+.login_content {
+    text-align:center;
+}
 
 /* Provider Images */
 ul.providers {
