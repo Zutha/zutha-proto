@@ -6,7 +6,7 @@
 			= "Signed in as %s." % current_user.email
 			= link_to "Sign out", destroy_user_session_path, :method => :delete
 		- else
-			= link_to "Sign In", new_user_session_url, :id => :sign_in
+			= link_to "Sign In", new_session_url, :id => :sign_in
 			/ = link_to_rpx "Sign in (Janrain)", user_session_url
 
 	= render 'users/account'
