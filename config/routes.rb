@@ -6,7 +6,7 @@ ZuthaProto::Application.routes.draw do
     delete 'sign_out', :to => 'users/sessions#destroy', :as => :destroy_user_session
   end
 
-  resources :users
+  resources :users, :except=> [:create, :new]
   
   resources :items do
     resources :investments, :only=> [:show ] do
