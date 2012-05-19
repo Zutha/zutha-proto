@@ -1,0 +1,23 @@
+= form_for(@user, :class=>"well") do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2= pluralize(@user.errors.count, "error")
+      prohibited this user from being saved:
+
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  %fieldset
+    .control-group
+      = f.label :name, :class=>"control-label"
+      .controls
+        = f.text_field :name
+    .control-group
+      = f.label :email
+      = f.text_field :email
+    .control-group
+      = f.label :zuth
+      = f.text_field :zuth
+    .form-actions
+      = f.submit "Submit", :class=>"btn btn-primary"
+      = link_to "Cancel", @user, :class=>"btn"

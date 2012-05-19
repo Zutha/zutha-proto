@@ -1,30 +1,27 @@
-@import "compass/css3/border-radius";
 
-$default-border-radius: 10px; 
-
-h1 {
-	text-align: center;
-}
-
-.item {
-	border: {
-		style: solid;
-		width: 1px;
-		color: blue;
+.items {
+	header {
+		border-bottom: 1px solid $dark_gray;
+		padding-bottom:1em;
 	}
-	padding-bottom: 1em;
-	@include border-radius;
-	margin-bottom: 3px;
-	padding: 4px;
+}
+.item {
+	padding: 0.5em 0;
+	border-bottom: 1px dotted $dark_gray;
+
 	overflow: auto;
 	width: 100%;
 
-	.actions {
+	p {
+		margin: 0;
+		padding: 0;
+	}
+	aside.investment {
 		float: left;
 		margin: {
 			top: 5px;
 			left: 8px;
-			right: 8px;
+			right: 12px;
 		}
 		width:5ex;
 
@@ -43,6 +40,7 @@ h1 {
 				display: block;
 			}
 			.vote {
+				margin:0;
 				&.up input {
 					background-image: url(up-arrow.gif);
 				}
@@ -58,16 +56,8 @@ h1 {
 		
 	}
 
-	header {
+	.controls {
 		float:right;
 	}
-
-	h2 {
-		margin: {
-			top: 8px;
-			bottom: 8px;
-		}
-	}
 }
-
-
+	

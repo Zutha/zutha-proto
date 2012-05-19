@@ -1,0 +1,23 @@
+.row
+	.span8.offset2
+		%header
+			%h1= item.url ? link_to(item.name, item.url) : item.name
+
+		%dl.dl-horizontal
+			- if item.url
+				%dt Url
+				%dd= item.url
+			%dt Description
+			%dd= item.description
+			%dt Worth
+			%dd= item.worth.round(2)
+			%dt Created
+			%dd= item.created_at
+			%dt Modified
+			%dd= item.updated_at
+
+		.return-links
+			= link_to 'Edit', edit_item_path(item), :class=>"btn btn-inverse"
+			%br
+			%br
+			= link_to 'Back to Items', items_path

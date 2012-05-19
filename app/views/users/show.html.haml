@@ -1,19 +1,18 @@
-%p
-	%b Name:
-	= @user.name
-%p
-	%b Zuth:
-	= @user.zuth.round(2)
-%p
-	%b Email:
-	= @user.email
-%p
-	%b Identifier:
-	= @user.identifier
-%p
-	%b Admin:
-	= @user.admin
-
-= succeed ' |' do
-	= link_to 'Edit', edit_user_path(@user) 
-= link_to 'Back', users_path
+.row
+	.span8.offset2
+		%header
+			%h1 User: #{@user.name}
+		%dl.dl-horizontal
+			%dt Zuth
+			%dd= @user.zuth.round(2)
+			%dt Email
+			%dd= @user.email
+			%dt Identifier
+			%dd= @user.identifier
+			%dt Admin?
+			%dd= @user.admin
+		.return-links
+			= link_to 'Edit', edit_user_path(@user), :class=>"btn btn-inverse"
+			%br
+			%br
+			= link_to 'Back to Users', users_path

@@ -11,12 +11,13 @@
 	
 	%header
 		= render 'panel'
-
+		
 		#flash
 			- flash.each do |type, msg|
 				= content_tag :div, msg, :class => type
 
-	%section#container
+
+	%section.container
 		= yield
 
 	= javascript_include_rpx(user_session_url)

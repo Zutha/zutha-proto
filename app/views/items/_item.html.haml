@@ -1,13 +1,10 @@
 %article.item
-	%aside.actions
+	%aside.investment
 		= render 'investments/investment', :item => item
 
-	%header
-		= link_to 'Edit', edit_item_path(item)
+	%aside.controls
+		= link_to 'Edit', edit_item_path(item), :class => "btn btn-mini btn-inverse"
 		- if admin?
-			|
-			= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete
-	%h2
-		= item.url ? link_to(item.name, item.url) : item.name
-	%p
-		= item.description
+			= link_to 'Remove', item, confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini btn-danger"
+	%h3= item.url ? link_to(item.name, item.url) : item.name
+	%p= item.description

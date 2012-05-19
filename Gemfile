@@ -11,6 +11,9 @@ gem 'decent_exposure'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'haml-rails'
+gem 'simple_form'
+gem 'tinymce-rails'
+gem 'kaminari'
 
 # Auth
 gem 'devise'
@@ -36,9 +39,12 @@ gem 'thin'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+	gem 'compass_twitter_bootstrap'
 	gem 'compass-rails'
+	gem 'sassy-buttons'
 	gem 'coffee-rails'
 	gem 'uglifier', '>= 1.0.3'
+	# gem 'bootstrap-sass'
 	
 	# See https://github.com/sstephenson/execjs#readme for more supported runtimes
 	# gem 'therubyracer'

@@ -1,0 +1,25 @@
+.alpha {
+	font-size: 0.5em;
+	color:$light_gray;
+}
+.user-stats {
+	left: 45%;
+	position: absolute;
+}
+#balance {
+	color: $gold;
+}
+
+#flash {
+	text-align: center;
+	
+	.notice {
+		color:green;
+	}
+	.alert {
+		color:red;
+	}
+	.error {
+		color:red;
+	}
+}

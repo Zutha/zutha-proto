@@ -1,12 +1,32 @@
-#panel
-	= link_to image_tag("logo-beta.png", :height=>"48"), root_url, :id=>"logo"
+.navbar.navbar-fixed-top
+	/ = link_to image_tag("logo-beta.png", :height=>"48"), root_url, :id=>"logo", :class => :brand
 	
-	#user_nav
-		- if user_signed_in?
-			= "Signed in as %s." % current_user.email
-			= link_to "Sign out", destroy_user_session_path, :method => :delete
-		- else
-			= link_to "Sign In", new_session_url, :id => :sign_in
-			/ = link_to_rpx "Sign in (Janrain)", user_session_url
+	.navbar-inner
+		.container
+			%a.btn.btn-navbar{:'data-toggle'=>"collapse", :'data-target'=>".nav-collapse"}
+				%span.icon-bar
+				%span.icon-bar
+				%span.icon-bar
 
-	= render 'users/account'
+			= link_to root_path, :class => :brand do
+				Zutha
+				%span.alpha ALPHA
+
+			- if user_signed_in?
+				.user-stats
+					%p.navbar-text
+						%b Balance: 
+						%span#balance 
+							= current_user.zuth.round(2)
+
+			.nav-collapse
+				%ul.nav
+					%li= link_to "Items", items_path
+					%li= link_to "Users", users_path
+				
+				%ul.nav.pull-right
+					- if user_signed_in?
+						%li= link_to current_user.name, user_path(current_user), :class => :profile_link
+						%li= link_to "Sign out", destroy_user_session_path, :method => :delete
+					- else
+						%li= link_to "Sign In", new_session_url, :id => :sign_in			

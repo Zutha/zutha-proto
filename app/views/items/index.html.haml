@@ -1,8 +1,7 @@
-%header
-  %h1 Listing items
-= render items
-  
-
-%br
-
-= link_to 'New Item', new_item_path
+.row
+	.span10.offset1.items
+		%header
+			%h1 Items
+		= render items	
+		%br
+		= link_to 'New Item', new_item_path, :class=>"btn btn-primary"
