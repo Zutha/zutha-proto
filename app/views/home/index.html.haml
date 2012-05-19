@@ -6,8 +6,12 @@
 
 .row
 	.span8.offset2.intro
-		%p
-			Zutha is an open source project to build a better model for measuring the reputation of people and things. It improves upon the "upvote" and "5-star" rating models in the following ways:
+		%p<
+			Zutha is an 
+			= link_to "open source", "https://github.com/barneyii/zutha-proto"
+			project to build a better model for measuring the reputation of people and things. It 
+			= link_to "improves upon", "http://zutha.wikispaces.com/Manifesto+-+Reputation+Model+Justification"
+			the "upvote" and "5-star" rating models in the following ways:
 			%ul
 				%li Gaming resistance
 				%li Discovery of under-recognized value
@@ -19,4 +23,12 @@
 			Disadvantages compared to conventional rating systems:
 			%ul
 				%li Complexity
+
+		%p
+			You can read more about the theory behind Zutha on the #{link_to "wiki", "http://zutha.wikispaces.com/Introduction"}.
+		%br
+		%p
+			%strong These are the categories the Zutha rating system has been applied to so far
+			%ul.item-categories
+				%li= link_to "Startups", items_url
 
