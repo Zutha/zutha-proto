@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 	# Include default devise modules. Others available are:
 	#  :database_authenticatable, :registerable, :validatable, :recoverable, :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable
-	devise :omniauthable, :rpx_connectable, :rememberable, :trackable
+	devise :omniauthable, :rememberable, :trackable
 
 	# Setup accessible (or protected) attributes for your model
 	attr_accessible :identifier, :email, :name, :reputation, :zuth, :admin
@@ -55,11 +55,4 @@ class User < ActiveRecord::Base
 	  find_for_omniauth(access_token,prefix)
 	end
 
-	# RPX/Engage
-	def before_rpx_auto_create(rpx_user)
-		logger.debug "\n before_rpx_auto_create():"
-		logger.debug rpx_user.to_yaml
-		logger.debug self.to_yaml
-    # self.name = rpx_user.displayName
-  end
 end

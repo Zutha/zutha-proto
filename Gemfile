@@ -11,14 +11,12 @@ gem 'decent_exposure'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'haml-rails'
-gem 'simple_form'
-gem 'tinymce-rails'
-gem 'kaminari'
+# gem 'simple_form'
+# gem 'tinymce-rails'
+# gem 'kaminari'
 
 # Auth
-gem 'devise'
-gem 'rpx_now'
-gem "devise_rpx_connectable"
+gem 'devise', '= 2.1.0'
 gem 'omniauth-facebook'
 gem 'omniauth-openid'
 gem 'omniauth-github'
