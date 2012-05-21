@@ -1,4 +1,4 @@
-class InvestmentsController < ApplicationControllercase
+class InvestmentsController < ApplicationController
   include InvestmentHelper, ApplicationHelper
 
   before_filter :authenticate_user!
@@ -42,13 +42,26 @@ protected
     item.reload
     investment.reload
 
-    obj = {
-      :item_worth => pretty_round(item.worth), 
-      :user_rating => user_rating(item),
-      :user_balance => pretty_round(current_user.zuth)
-    }
-    render :json => obj
+    render :json => make_response
   end
 
+  def make_response
+    new_item_worth = pretty_round(item.worth)
+    new_user_rating = user_rating(item)
+    new_user_balance = pretty_round(current_user.zuth)
+
+    obj = {}
+
+    if params[:new_item_worth] != new_item_worth.to_s
+      obj[:item_worth] = new_item_worth
+    end
+    if params[:new_user_balance] != new_user_balance.to_s
+      obj[:user_balance] = new_user_balance
+    end
+    if params[:new_user_rating] != new_user_rating.to_s
+      obj[:user_rating] = new_user_rating
+    end
+    obj
+  end
 
 end

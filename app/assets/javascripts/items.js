@@ -26,8 +26,6 @@ $(function(){
 			iwObj.html( iwNew );	
 			ubObj.html( ubNew );
 			urObj.html( urNew );
-			
-			urObj.parent().show();
 		}
 	});
 
@@ -55,27 +53,19 @@ $(function(){
 			iwObj.html( iwNew );	
 			ubObj.html( ubNew );
 			urObj.html( urNew );
-			
-			if(urNew == 0){
-				urObj.parent().hide();
-			}
 		}
 	});
 
 	$(document).on('ajax:success', '.vote', function(event, data){
 		var parent = $(this).parents('.item');
-		parent.find('.item-worth').html(data.item_worth);
 		
-		ur = data.user_rating;
-		urObj = parent.find('.user-rating');
-		urObj.html(ur);
-		if(ur == 0){
-			urObj.parent().hide();
-		} else {
-			urObj.parent().show();
-		}
-		
-		$('#balance').html(data.user_balance);
+		item_worth = data.item_worth;
+		user_rating = data.user_rating;
+		user_balance = data.user_balance;
+
+		if(item_worth) parent.find('.item-worth').html(data.item_worth);
+		if(user_rating) parent.find('.user-rating').html(user_rating);
+		if(user_balance) $('#balance').html(user_balance);
 	});
 
 	$(document).on('ajax:error', '.vote', function(event, xhr, status){
