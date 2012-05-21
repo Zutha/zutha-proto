@@ -22,7 +22,22 @@
 		margin: 0;
 		padding: 0;
 	}
-	aside.investment {
+
+	.stats {
+		float: left;
+
+		.item-worth {
+			float:none;
+			display:inline-block;
+			vertical-align: middle;
+			line-height: 3em;
+			font-weight: bold;
+			min-width: 60px;
+			text-align: center;
+		}
+	}
+
+	.investment {
 		float: right;
 		font-size: 14px;
 		margin {

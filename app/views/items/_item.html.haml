@@ -1,4 +1,7 @@
 %article.item
+	%aside.stats
+		%span.item-worth= pretty_round(item.worth)
+
 	= render 'investments/investment', :item => item
 
 	%h3= link_to item.name, item
