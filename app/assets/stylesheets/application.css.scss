@@ -11,13 +11,22 @@
  *= require_self
 */
 
+// ---- Frameworks ----
 // Bootstrap
 @import "compass_twitter_bootstrap";
 body {padding-top: 60px};
 @import "compass_twitter_bootstrap_responsive";
+// Sassy Buttons
+@import "sassy-buttons";
 
-// Core
-@import 'variables.css.scss';
+// Global
+@import 'variables';
+
+// ---- Config ----
+// Compass
+@import "compass";
+// Sassy Buttons
+@import "sassy_buttons";
 
 // Styles
 @import 'defaults.css.scss';

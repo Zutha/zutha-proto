@@ -3,12 +3,12 @@
 .row
 	.span8.offset2
 		%header
-			%h1= item.url ? link_to(item.name, item.url) : item.name
+			%h1= item.name
 
 		%dl.dl-horizontal
 			- if item.url
 				%dt Url
-				%dd= item.url
+				%dd= link_to simple_url(item.url), item.url
 			%dt Description
 			%dd= item.description
 			%dt Worth
@@ -20,6 +20,8 @@
 
 		.return-links
 			= link_to 'Edit', edit_item_path(item), :class=>"btn btn-inverse"
+			- if admin?
+				= link_to 'Remove', item, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger"
 			%br
 			%br
 			= link_to 'Back to Items', items_path

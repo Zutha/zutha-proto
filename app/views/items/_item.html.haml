@@ -1,10 +1,7 @@
 %article.item
-	%aside.investment
-		= render 'investments/investment', :item => item
+	= render 'investments/investment', :item => item
 
-	%aside.controls
-		= link_to 'Edit', edit_item_path(item), :class => "btn btn-mini btn-inverse"
-		- if admin?
-			= link_to 'Remove', item, confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini btn-danger"
-	%h3= item.url ? link_to(item.name, item.url) : item.name
+	%h3= link_to item.name, item
+	- if item.url
+		%span.url= link_to simple_url(item.url), item.url
 	%p= item.description

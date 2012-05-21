@@ -39,7 +39,7 @@ gem 'thin'
 group :assets do
 	gem 'compass_twitter_bootstrap'
 	gem 'compass-rails'
-	gem 'sassy-buttons'
+	gem 'sassy-buttons', :git => 'git://github.com/jhardy/Sassy-Buttons.git'
 	gem 'coffee-rails'
 	gem 'uglifier', '>= 1.0.3'
 	# gem 'bootstrap-sass'

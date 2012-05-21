@@ -4,7 +4,7 @@ $(function(){
 
 	// Vote Up
 	$(document).on('ajax:beforeSend', '.vote.up', function(event, xhr, settings) {
-		parent = $(this).parent('.voting');
+		parent = $(this).parents('.item');
 		ubObj = $('#balance');
 		ub = parseFloat(ubObj.html());
 		if(ub >= 5){
@@ -33,7 +33,7 @@ $(function(){
 
 	// Vote Down
 	$(document).on('ajax:beforeSend', '.vote.down', function(event, xhr, settings) {
-		parent = $(this).parent('.voting');
+		parent = $(this).parents('.item');
 		urObj = parent.find('.user-rating');
 		ur = parseFloat(urObj.html());
 		if(ur >= 1){
@@ -63,7 +63,7 @@ $(function(){
 	});
 
 	$(document).on('ajax:success', '.vote', function(event, data){
-		var parent = $(this).parent('.voting');
+		var parent = $(this).parents('.item');
 		parent.find('.item-worth').html(data.item_worth);
 		
 		ur = data.user_rating;

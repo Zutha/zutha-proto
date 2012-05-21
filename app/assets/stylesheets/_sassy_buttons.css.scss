@@ -1,0 +1,14 @@
+
+@mixin small-button { 
+	@include sassy-button-structure(5px, 10px, 1px 6px); 
+	font-weight: bold;
+}
+
+@mixin gold-button { 
+	@include sassy-button-gradient("matte", #F6B33D, #D29105, #fff, "inset");
+}
+@mixin red-button { 
+	@include sassy-button-gradient("matte", #FA665A, #D34639, #fff, "inset"); 
+}
+
+

@@ -16,7 +16,7 @@ class Item < ActiveRecord::Base
 	scope :by_worth, order('worth DESC')
 
 	def investment_of(user)
-		self.investments.where(:user_id => user).first
+		self.investments.where(:user_id => user.try(:id)).first
 	end
 
 	protected
@@ -25,7 +25,7 @@ class Item < ActiveRecord::Base
 		# url
 		url = self.url
 		self.url = case url
-			when "" then nil
+			when "", nil then nil
 			when %r"^https?://" then url
 			else "http://" + url
 		end

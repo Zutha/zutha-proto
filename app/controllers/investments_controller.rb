@@ -1,4 +1,4 @@
-class InvestmentsController < ApplicationController
+class InvestmentsController < ApplicationControllercase
   include InvestmentHelper, ApplicationHelper
 
   before_filter :authenticate_user!
