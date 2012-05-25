@@ -6,6 +6,7 @@
 
 	%h3
 		= link_to item.name, item
+		%span.edit_link= link_to "(edit)", edit_item_url(item)
 		%small= item.tag_list
 	- if item.url
 		%span.url= link_to simple_url(item.url), item.url
