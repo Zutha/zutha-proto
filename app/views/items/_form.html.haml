@@ -1,4 +1,4 @@
-= form_for(@item, :class=>"well") do |item_form|
+= form_for @item, :html => {:class=>"form-horizontal"} do |item_form|
 	- if @item.errors.any?
 		#error_explanation
 			%h2 
@@ -16,12 +16,11 @@
 		.control-group
 			= item_form.label :url, :class=>"control-label"
 			.controls
-				= item_form.text_field :url
+				= item_form.url_field :url
 		= render :partial => 'tag_links/form', :locals => {:item_form => item_form}
 		.control-group
 			= item_form.label :description, :class=>"control-label"
 			.controls
-				= item_form.text_field :description
-		.form-actions
+				= item_form.text_area :description, :rows=>4, :class => "input-xlarge"
 			= item_form.submit "Submit", :class=>"btn btn-primary"
 			= link_to "Cancel", items_url, :class=>"btn"

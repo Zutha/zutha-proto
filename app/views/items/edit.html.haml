@@ -1,8 +1,11 @@
 - title "Edit Item: '"+@item.name+"'"
 
-%h1 Editing item
+.row
+	.span10.offset1
+		%header
+			%h1 Editing item
 
-= render 'form'
+		= render 'form'
 
-= link_to 'Back to Items', items_path
+		= link_to 'Back to Items', items_path
 
