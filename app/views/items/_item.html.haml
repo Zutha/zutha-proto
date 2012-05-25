@@ -4,7 +4,9 @@
 
 	= render 'investments/investment', :item => item
 
-	%h3= link_to item.name, item
+	%h3
+		= link_to item.name, item
+		%small= item.tag_list
 	- if item.url
 		%span.url= link_to simple_url(item.url), item.url
 	%p= item.description

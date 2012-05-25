@@ -1,26 +1,27 @@
-= form_for(item, :class=>"well") do |f|
-	- if item.errors.any?
+= form_for(@item, :class=>"well") do |item_form|
+	- if @item.errors.any?
 		#error_explanation
 			%h2 
-				= pluralize(item.errors.count, "error")
-				prohibited this item from being saved:
+				= pluralize(@item.errors.count, "error")
+				prohibited this @item from being saved:
 			%ul
-			- item.errors.full_messages.each do |msg|
+			- @item.errors.full_messages.each do |msg|
 				%li= msg
 
 	%fieldset
 		.control-group
-			= f.label :name, :class=>"control-label"
+			= item_form.label :name, :class=>"control-label"
 			.controls
-				= f.text_field :name, :size=>40
+				= item_form.text_field :name, :size=>40
 		.control-group
-			= f.label :url, :class=>"control-label"
+			= item_form.label :url, :class=>"control-label"
 			.controls
-				= f.text_field :url
+				= item_form.text_field :url
+		= render :partial => 'tag_links/form', :locals => {:item_form => item_form}
 		.control-group
-			= f.label :description, :class=>"control-label"
+			= item_form.label :description, :class=>"control-label"
 			.controls
-				= f.text_field :description
+				= item_form.text_field :description
 		.form-actions
-			= f.submit "Submit", :class=>"btn btn-primary"
+			= item_form.submit "Submit", :class=>"btn btn-primary"
 			= link_to "Cancel", items_url, :class=>"btn"

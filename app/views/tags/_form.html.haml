@@ -1,0 +1,19 @@
+= form_for(@tag, :class=>"well") do |tag_form|
+
+	- if @tag.errors.any?
+		#error_explanation
+			%h2 
+				= pluralize(@tag.errors.count, "error")
+				prohibited this @tag from being saved:
+			%ul
+			- @tag.errors.full_messages.each do |msg|
+				%li= msg
+
+	%fieldset
+		.control-group
+			= tag_form.label :name, :class=>"control-label"
+			.controls
+				= tag_form.text_field :name, :size=>40
+		.form-actions
+			= tag_form.submit "Submit", :class=>"btn btn-primary"
+			= link_to "Cancel", tags_url, :class=>"btn"

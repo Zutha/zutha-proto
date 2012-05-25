@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514010244) do
+ActiveRecord::Schema.define(:version => 20120524025615) do
 
   create_table "investments", :force => true do |t|
     t.float    "h",          :default => 0.0, :null => false
@@ -33,6 +33,24 @@ ActiveRecord::Schema.define(:version => 20120514010244) do
     t.float    "pos_market_height", :default => 0.0
     t.string   "url"
   end
+
+  create_table "tag_links", :force => true do |t|
+    t.integer  "tag_id",     :null => false
+    t.integer  "item_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tag_links", ["item_id"], :name => "index_tag_links_on_item_id"
+  add_index "tag_links", ["tag_id"], :name => "index_tag_links_on_tag_id"
+
+  create_table "tags", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"

@@ -17,6 +17,8 @@ ZuthaProto::Application.routes.draw do
     end
   end
 
+  resources :tags, :only => [:index, :create, :destroy]
+
   root :to => "home#index"
 
   # The priority is based upon order of creation:

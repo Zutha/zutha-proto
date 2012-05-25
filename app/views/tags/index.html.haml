@@ -1,0 +1,13 @@
+- title "Tags"
+
+.row
+	.span10.offset1.tags
+		%header
+			%h1 Tags
+			%br
+			%ul
+				- tags.each do |t|
+					%li= link_to t.name, items_url(:tag => t.name)
+			- if admin?
+				%h2 New Tag
+				= render 'form'

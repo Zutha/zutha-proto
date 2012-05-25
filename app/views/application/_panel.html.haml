@@ -21,9 +21,16 @@
 
 			.nav-collapse
 				%ul.nav
-					%li= link_to "Items", items_path
+					%li.dropdown
+						%a.dropdown-toggle(href="#" data-toggle="dropdown")
+							Items
+							%b.caret
+						%ul.dropdown-menu
+							%li= link_to "All Items", items_path
+							- Tag.all.each do |t|
+								%li= link_to t.name, items_url(:tag => t.name)
 					%li= link_to "Users", users_path
-				
+					%li= link_to "Tags", tags_path			
 				%ul.nav.pull-right
 					- if user_signed_in?
 						%li= link_to current_user.name, user_path(current_user), :class => :profile_link

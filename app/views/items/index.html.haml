@@ -1,9 +1,9 @@
-- title "Items"
+- title filter_name
 
 .row
 	.span10.offset1.items
 		%header
-			%h1 Items
+			%h1= filter_name
 		= render items	
 		%br
 		= link_to 'New Item', new_item_path, :class=>"btn btn-primary"

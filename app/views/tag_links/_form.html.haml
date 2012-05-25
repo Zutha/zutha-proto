@@ -1,0 +1,14 @@
+.control-group
+	%label.control-label Tags
+	.controls
+		%table.table.table-striped.table-condensed
+			%tr
+				%th Name
+				%th Remove
+			= item_form.fields_for :tag_links do |tag_form|
+				%tr
+					%td= tag_form.collection_select :tag_id, Tag.all, :id, :name, :prompt => "Select a Tag"
+					/ %td= tag_form.text_field :name
+					%td
+						- unless tag_form.object.nil? || tag_form.object.new_record?
+							= tag_form.check_box :_destroy

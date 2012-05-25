@@ -1,27 +1,30 @@
-- title "Item: "+item.name
+- title "Item: "+@item.name
 
 .row
 	.span8.offset2
 		%header
-			%h1= item.name
+			%h1= @item.name
 
 		%dl.dl-horizontal
-			- if item.url
+			- if @item.url
 				%dt Url
-				%dd= link_to simple_url(item.url), item.url
+				%dd= link_to simple_url(@item.url), @item.url
+			- unless @item.tags.empty?
+				%dt Tags
+				%dd= @item.tag_list
 			%dt Description
-			%dd= item.description
+			%dd= @item.description.empty? ? "_empty_" : @item.description
 			%dt Worth
-			%dd= item.worth.round(2)
+			%dd= @item.worth.round(2)
 			%dt Created
-			%dd= item.created_at
+			%dd= @item.created_at
 			%dt Modified
-			%dd= item.updated_at
+			%dd= @item.updated_at
 
 		.return-links
-			= link_to 'Edit', edit_item_path(item), :class=>"btn btn-inverse"
+			= link_to 'Edit', edit_item_path(@item), :class=>"btn btn-inverse"
 			- if admin?
-				= link_to 'Remove', item, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger"
+				= link_to 'Remove', @item, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger"
 			%br
 			%br
 			= link_to 'Back to Items', items_path
