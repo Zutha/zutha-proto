@@ -6,4 +6,4 @@
 			%h1= filter_name
 		= render items	
 		%br
-		= link_to 'New Item', new_item_path, :class=>"btn btn-primary"
+		= link_to 'New Item', new_item_path(:tag => tag_name), :class=>"btn btn-primary"

@@ -1,12 +1,10 @@
 class ItemsController < ApplicationController
+	expose(:tag_name) {
+		tag.try(:name)
+	}
 	expose(:filter_name) {
 		if params[:tag]
-			tag = Tag.where("lower(name) = ?", params[:tag].downcase).first
-			if tag
-				tag.name
-			else
-				nil
-			end
+			tag_name
 		else
 			"Items"
 		end
@@ -50,7 +48,10 @@ class ItemsController < ApplicationController
 	# GET /items/new.json
 	def new
 		@item = Item.new
-		@item.tag_links.build
+		taglink = @item.tag_links.build
+		if tag
+			taglink.tag_id = tag.id
+		end
 
 		respond_to do |format|
 			format.html # new.html.erb
@@ -107,5 +108,11 @@ class ItemsController < ApplicationController
 			format.html { redirect_to items_url }
 			format.json { head :no_content }
 		end
+	end
+
+	protected
+
+	def tag 
+		@tag ||= Tag.where("lower(name) = ?", params[:tag].try(:downcase)).first
 	end
 end
