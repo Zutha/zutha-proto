@@ -1,4 +1,6 @@
 class Investment < ActiveRecord::Base
+	include ApplicationHelper
+
 	belongs_to :user
 	belongs_to :item
 	
@@ -27,7 +29,7 @@ class Investment < ActiveRecord::Base
 	end
 
 	def sell(amount)
-		v = value
+		v = value_hp
 		h0 = item.pos_market_height
 		if amount >= v
 			amount = v
@@ -49,7 +51,30 @@ class Investment < ActiveRecord::Base
 		item.errors.empty?
 	end
 
-	def value
+	def set_value(value)
+		if value < 0 then value = 0 end
+		old_value = value_hp
+		change = value - old_value
+		h0 = item.pos_market_height
+		h1 = (h0**K + change)**(1/K)
+		dh = h1 - h0
+
+		item.transaction do
+			if change > 0
+				user.spend(change)
+			else
+				user.receive(change)
+			end
+			self.h += dh
+			item.worth += change
+			item.pos_market_height = h1
+			item.save!
+			self.save!
+		end
+		item.errors.empty?
+	end
+
+	def value_hp
 		h0 = item.pos_market_height
 		h1 = h0 - self.h
 		v0 = h0**K
@@ -57,4 +82,9 @@ class Investment < ActiveRecord::Base
 		v = v0 - v1
 		v
 	end
+
+	def value
+		pretty_round(value_hp)
+	end
+
 end

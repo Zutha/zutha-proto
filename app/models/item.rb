@@ -20,7 +20,8 @@ class Item < ActiveRecord::Base
 	scope :by_worth, order('worth DESC')
 
 	def investment_of(user)
-		self.investments.where(:user_id => user.try(:id)).first
+		self.investments.where(:user_id => user.try(:id)).first ||
+			self.investments.build(:user => user)
 	end
 
 	def tag_list

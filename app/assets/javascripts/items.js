@@ -2,8 +2,22 @@
 $(function(){
 // Events
 
-	// Vote Up
-	$(document).on('ajax:beforeSend', '.vote.up', function(event, xhr, settings) {
+	// OnBlur Submit
+	$(document).on('keypress', '.submittable', function(e) {
+		if(e.which == 13) { //on Enter key
+			$(this).blur();
+		}
+	});
+
+	$(document).on('change', '.submittable', function() {
+		$(this).parents('form:first').submit();
+	});
+
+	// Invest: Set
+
+
+	// Invest: Buy
+	$(document).on('ajax:beforeSend', '.invest.buy', function(event, xhr, settings) {
 		parent = $(this).parents('.item');
 		ubObj = $('#balance');
 		ub = parseFloat(ubObj.html());
@@ -14,8 +28,8 @@ $(function(){
 		}
 		if(ub >= 0.1){
 			ubNew = roundTo(ub - amount,2);
-			urObj = parent.find('.user-rating');
-			urNew = roundTo(parseFloat(urObj.html()) + amount,2);
+			urObj = parent.find('input.user-rating');
+			urNew = roundTo(parseFloat(urObj.val()) + amount,2);
 			iwObj = parent.find('.item-worth');
 			iwNew = roundTo(parseFloat(iwObj.html()) + amount,2);
 			params = "&amount="+amount+
@@ -25,15 +39,15 @@ $(function(){
 			settings.data = settings.data + params;
 			iwObj.html( iwNew );	
 			ubObj.html( ubNew );
-			urObj.html( urNew );
+			urObj.val( urNew );
 		}
 	});
 
-	// Vote Down
-	$(document).on('ajax:beforeSend', '.vote.down', function(event, xhr, settings) {
+	// Invest: Sell
+	$(document).on('ajax:beforeSend', '.invest.sell', function(event, xhr, settings) {
 		parent = $(this).parents('.item');
-		urObj = parent.find('.user-rating');
-		ur = parseFloat(urObj.html());
+		urObj = parent.find('input.user-rating');
+		ur = parseFloat(urObj.val());
 		if(ur >= 1){
 			amount = 1;
 		} else {
@@ -52,11 +66,11 @@ $(function(){
 			settings.data = settings.data + params;
 			iwObj.html( iwNew );	
 			ubObj.html( ubNew );
-			urObj.html( urNew );
+			urObj.val( urNew );
 		}
 	});
 
-	$(document).on('ajax:success', '.vote', function(event, data){
+	$(document).on('ajax:success', '.invest', function(event, data){
 		var parent = $(this).parents('.item');
 		
 		item_worth = data.item_worth;
@@ -64,11 +78,11 @@ $(function(){
 		user_balance = data.user_balance;
 
 		if(item_worth) parent.find('.item-worth').html(data.item_worth);
-		if(user_rating) parent.find('.user-rating').html(user_rating);
+		if(user_rating) parent.find('input.user-rating').val(user_rating);
 		if(user_balance) $('#balance').html(user_balance);
 	});
 
-	$(document).on('ajax:error', '.vote', function(event, xhr, status){
+	$(document).on('ajax:error', '.invest', function(event, xhr, status){
 		data = jQuery.parseJSON(xhr.responseText);
 		msg = data[status];;
 		$('#flash').html("<div class='"+status+"'>" + msg + "</div>")

@@ -13,6 +13,7 @@ ZuthaProto::Application.routes.draw do
       collection do
         post :buy
         post :sell
+        post :set
       end
     end
   end

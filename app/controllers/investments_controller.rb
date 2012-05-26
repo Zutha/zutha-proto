@@ -4,16 +4,7 @@ class InvestmentsController < ApplicationController
   before_filter :authenticate_user!
 
   expose(:item) { Item.find params[:item_id] }
-  expose(:investment) {
-    found = item.investment_of current_user
-    if found
-      found
-    else
-      item.investments.build params[:investment]
-    end
-  }
-
-  before_filter :setup_investment
+  expose(:investment) { item.investment_of current_user }
 
   def buy
     default = current_user.zuth >= 5 ? 1.0 : 0.1
@@ -27,6 +18,12 @@ class InvestmentsController < ApplicationController
     refresh
   end
 
+  def set
+    value = params[:investment][:value].to_f
+    investment.set_value(value)
+    refresh
+  end
+
 
 protected
   
@@ -34,20 +31,17 @@ protected
     params[:amount] && params[:amount].to_f
   end
 
-  def setup_investment
-    investment.user = current_user
-  end
-
   def refresh
     item.reload
     investment.reload
+    current_user.reload
 
     render :json => make_response
   end
 
   def make_response
     new_item_worth = pretty_round(item.worth)
-    new_user_rating = user_rating(item)
+    new_user_rating = investment.value
     new_user_balance = pretty_round(current_user.zuth)
 
     obj = {}

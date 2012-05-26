@@ -1,9 +1,13 @@
 %aside.investment
-	- user_rating = user_rating(item)
-	= button_to "Sell", sell_item_investments_path(item), :remote=> true, |
-			:form => {:class=> 'vote down', :"data-type"=> 'json'}
+	- investment = investment(item)
+	- user_rating = investment.value
+	= button_to "Sell", sell_item_investments_path(item), :remote=> true, :method => :post, |
+			:form => {:class=> 'invest sell', :"data-type"=> 'json'}
 
-	%span.user-rating= user_rating
+	= form_for investment, :remote => true, :method => :post, |
+		:url=> set_item_investments_path(item), |
+		:html => {:class => "invest set"} do |f|
+		= f.text_field :value, :class => "submittable user-rating"
 
-	= button_to "Buy", buy_item_investments_path(item), :remote=> true, |
-		:form => {:class=> 'vote up', :'data-type'=> 'json'}
+	= button_to "Buy", buy_item_investments_path(item), :remote=> true, :method => :post, |
+		:form => {:class=> 'invest buy', :'data-type'=> 'json'}

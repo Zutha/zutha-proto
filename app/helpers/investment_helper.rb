@@ -1,8 +1,11 @@
 module InvestmentHelper
-	def user_rating(item)
+	def investment(item)
 		investment = item.investment_of current_user
-		user_rating = investment ? investment.value : 0.0
-		pretty_round(user_rating)
+	end
+	
+	def user_rating(item)
+		investment = investment(item)
+		user_rating = investment.value
 	end
 
 end
