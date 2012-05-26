@@ -48,7 +48,7 @@ class ItemsController < ApplicationController
 	# GET /items/new.json
 	def new
 		@item = Item.new
-		taglink = @item.tag_links.build
+		taglink = @item.tag_links.new
 		if tag
 			taglink.tag_id = tag.id
 		end
@@ -69,8 +69,8 @@ class ItemsController < ApplicationController
 	# POST /items
 	# POST /items.json
 	def create
-		@item = Item.new(params[:item])
-		
+		@item = Item.create(params[:item])
+
 		respond_to do |format|
 			if @item.save
 				format.html { redirect_to items_url, notice: 'Item was successfully created.' }
