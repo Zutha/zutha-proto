@@ -1,4 +1,4 @@
-= form_for @item, :html => {:class=>"form-horizontal"} do |item_form|
+= form_for @item, :url => items_url(:tag => tag_name), :html => {:class=>"form-horizontal"} do |item_form|
 	- if @item.errors.any?
 		#error_explanation
 			%h2 

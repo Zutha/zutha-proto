@@ -73,7 +73,7 @@ class ItemsController < ApplicationController
 
 		respond_to do |format|
 			if @item.save
-				format.html { redirect_to items_url, notice: 'Item was successfully created.' }
+				format.html { redirect_to items_url(:tag => tag_name), notice: 'Item was successfully created.' }
 				format.json { render json: items, status: :created, location: items_url }
 			else
 				format.html { render action: "new" }
