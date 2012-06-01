@@ -5,6 +5,6 @@
 		%header
 			%h1 New Item
 
-		= render 'form'
+		= render 'form', :url => items_path(:tag => tag_name), :method => :post
 
 		= link_to 'Back to Items', items_path

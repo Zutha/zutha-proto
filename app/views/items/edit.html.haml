@@ -5,7 +5,7 @@
 		%header
 			%h1 Editing item
 
-		= render 'form'
+		= render 'form', :url => item_path(@item), :method => :put
 		= link_to "Show Item", @item
 		%br
 		= link_to 'Back to Items', items_path
