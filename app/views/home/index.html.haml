@@ -32,5 +32,6 @@
 		%p
 			%strong These are the categories the Zutha rating system has been applied to so far
 			%ul.item-categories
-				%li= link_to "Startups", items_url
+				- Tag.categories.each do |t|
+					%li= link_to t.name, items_url(:tag => t.name)
 

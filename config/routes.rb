@@ -18,7 +18,7 @@ ZuthaProto::Application.routes.draw do
     end
   end
 
-  resources :tags, :only => [:index, :create, :destroy]
+  resources :tags, :except => [:new, :show]
 
   root :to => "home#index"
 

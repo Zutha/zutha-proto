@@ -1,12 +1,12 @@
-= form_for(@tag, :class=>"well") do |tag_form|
+= form_for(_tag, :class=>"well") do |tag_form|
 
-	- if @tag.errors.any?
+	- if _tag.errors.any?
 		#error_explanation
 			%h2 
-				= pluralize(@tag.errors.count, "error")
-				prohibited this @tag from being saved:
+				= pluralize(_tag.errors.count, "error")
+				prohibited this _tag from being saved:
 			%ul
-			- @tag.errors.full_messages.each do |msg|
+			- _tag.errors.full_messages.each do |msg|
 				%li= msg
 
 	%fieldset
@@ -14,6 +14,10 @@
 			= tag_form.label :name, :class=>"control-label"
 			.controls
 				= tag_form.text_field :name, :size=>40
+		.control-group
+			= tag_form.label :is_category, :class=>"control-label"
+			.controls
+				= tag_form.check_box :is_category
 		.form-actions
 			= tag_form.submit "Submit", :class=>"btn btn-primary"
 			= link_to "Cancel", tags_url, :class=>"btn"

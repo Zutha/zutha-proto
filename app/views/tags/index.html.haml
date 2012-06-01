@@ -7,7 +7,10 @@
 			%br
 			%ul
 				- tags.each do |t|
-					%li= link_to t.name, items_url(:tag => t.name)
+					%li
+						= link_to t.name, items_url(:tag => t.name)
+						- if admin?
+							%small= link_to "(edit)", edit_tag_url(t)
 			- if admin?
 				%h2 New Tag
 				= render 'form'

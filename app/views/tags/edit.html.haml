@@ -1,0 +1,12 @@
+- title "Edit Tag: '"+_tag.name+"'"
+
+.row
+	.span10.offset1
+		%header
+			%h1 Editing Tag
+
+		= render 'form', :url => tag_path(_tag), :method => :put
+		= link_to "Show Tag", _tag
+		%br
+		= link_to 'Back to Tags', tags_path
+

@@ -3,4 +3,6 @@ class Tag < ActiveRecord::Base
 	has_many :items, :through => :tag_links
 
 	validates :name, :uniqueness=> :true
+
+	scope :categories, where(:is_category => true)
 end
