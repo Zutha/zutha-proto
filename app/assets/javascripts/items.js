@@ -6,6 +6,7 @@ $(function(){
 	$(document).on('keypress', '.submittable', function(e) {
 		if(e.which == 13) { //on Enter key
 			$(this).blur();
+			e.preventDefault();
 		}
 	});
 
@@ -77,9 +78,9 @@ $(function(){
 		user_rating = data.user_rating;
 		user_balance = data.user_balance;
 
-		if(item_worth) parent.find('.item-worth').html(data.item_worth);
-		if(user_rating) parent.find('input.user-rating').val(user_rating);
-		if(user_balance) $('#balance').html(user_balance);
+		if(null!=item_worth) parent.find('.item-worth').html(item_worth);
+		if(null!=user_rating) parent.find('input.user-rating').val(user_rating);
+		if(null!=user_balance) $('#balance').html(user_balance);
 	});
 
 	$(document).on('ajax:error', '.invest', function(event, xhr, status){

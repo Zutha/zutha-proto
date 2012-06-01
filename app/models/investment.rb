@@ -6,7 +6,7 @@ class Investment < ActiveRecord::Base
 	
 	validates_each :h do |record, attr, value|
 		if value < 0
-			record.errors.add(attr, attr + " cannot be negative")
+			record.errors.add(attr, "%s cannot be negative" % attr)
 		end
 	end
 
@@ -43,8 +43,9 @@ class Investment < ActiveRecord::Base
 		item.transaction do
 			user.receive(amount)
 			self.h -= dh
-			item.worth -= amount
 			item.pos_market_height = h1
+			item.worth = (h1**K).round(6)
+
 			item.save!
 			self.save!
 		end
@@ -52,22 +53,27 @@ class Investment < ActiveRecord::Base
 	end
 
 	def set_value(value)
-		if value < 0 then value = 0 end
+		if value <= 0.0 then value = 0.0 end
+
 		old_value = value_hp
 		change = value - old_value
 		h0 = item.pos_market_height
-		h1 = (h0**K + change)**(1/K)
-		dh = h1 - h0
 
 		item.transaction do
-			if change > 0
-				user.spend(change)
+			user.spend(change)
+			
+			if value == 0 then
+				h1 = [h0 - h, 0.0].max
+				item.pos_market_height = h1
+				self.h = 0
 			else
-				user.receive(change)
+				h1 = [(h0**K + change)**(1/K), 0.0].max
+				dh = h1 - h0
+				item.pos_market_height = h1
+				self.h = (h + dh)
 			end
-			self.h += dh
-			item.worth += change
-			item.pos_market_height = h1
+			item.worth = (h1**K).round(6)
+			
 			item.save!
 			self.save!
 		end
