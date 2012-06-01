@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-	expose(:tags) { Tag.all }
+	expose(:tags) { Tag.alphabetically }
 	expose(:_tag)
 
 	before_filter :authorize, :only => [:create, :destroy, :edit]

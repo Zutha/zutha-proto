@@ -5,4 +5,5 @@ class Tag < ActiveRecord::Base
 	validates :name, :uniqueness=> :true
 
 	scope :categories, where(:is_category => true)
+	scope :alphabetically, order(:name)
 end
