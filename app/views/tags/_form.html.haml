@@ -15,9 +15,9 @@
 			.controls
 				= tag_form.text_field :name, :size=>40
 		.control-group
-			= tag_form.label :is_category, :class=>"control-label"
+			= tag_form.label :tag_type, :class=>"control-label"
 			.controls
-				= tag_form.check_box :is_category
+				= tag_form.collection_select :tag_type_id, TagType.all, :id, :name, :prompt => "Select a Tag Type"
 		.form-actions
 			= tag_form.submit "Submit", :class=>"btn btn-primary"
 			= link_to "Cancel", tags_url, :class=>"btn"
