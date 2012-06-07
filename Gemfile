@@ -29,6 +29,7 @@ gem 'omniauth-windowslive'
 # gem 'authlogic_rpx', '= 1.2.0'
 
 # Servers
+gem 'pg'
 gem 'thin'
 
 # Debugger
@@ -53,7 +54,7 @@ group :development do
 	gem 'sqlite3'
 end
 group :production do
-	gem 'pg'
+	
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
