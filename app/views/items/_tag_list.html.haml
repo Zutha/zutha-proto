@@ -1,0 +1,15 @@
+- tt_uname = tag_type.url_name
+- tt_name = tag_type.name
+%h3= tt_name
+%ul
+	%li
+		- if params[tt_uname].present?
+			= link_to "All #{tt_name}s", items_path(remove_key(params, tt_uname))
+		- else
+			= "All #{tt_name}s"
+	- tag_type.tags.each do |tag|
+		%li
+			= render :partial => 'tag', :locals=> {:tag => tag, :tt_uname => tt_uname }
+
+
+	

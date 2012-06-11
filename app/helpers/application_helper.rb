@@ -16,4 +16,15 @@ module ApplicationHelper
 	def simple_url(url)
 		url.sub(%r{https?://}, "")
 	end
+
+	def remove_key(hash, key)
+		hash1 = hash.clone
+		hash1.delete(key)
+		hash1
+	end
+	def update_key(hash, key, value)
+		hash1 = hash.clone
+		hash1[key] = value
+		hash1
+	end
 end

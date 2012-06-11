@@ -1,9 +1,14 @@
 - title filter_name
 
 .row
-	.span10.offset1.items
+	.span12
 		%header
 			%h1= filter_name
+.row-fluid
+	.span2.sidebar
+		- TagType.all.each do |tag_type|
+			= render :partial=> 'tag_list', :locals=>{:tag_type => tag_type}
+	.span10.items
 		= render items	
 		%br
-		= link_to 'New Item', new_item_path(:tag => tag_name), :class=>"btn btn-primary"
+		= link_to 'New Item', new_item_path(params), :class=>"btn btn-primary"

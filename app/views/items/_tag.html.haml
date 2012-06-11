@@ -1,0 +1,4 @@
+- if params[tt_uname] == tag.url_name
+	= tag.name
+- else
+	= link_to tag.name, items_path(update_key(params, tt_uname, tag.url_name))

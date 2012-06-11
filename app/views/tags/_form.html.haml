@@ -15,6 +15,10 @@
 			.controls
 				= tag_form.text_field :name, :size=>40
 		.control-group
+			= tag_form.label :url_name, :class=>"control-label"
+			.controls
+				= tag_form.text_field :url_name, :size=>40
+		.control-group
 			= tag_form.label :tag_type, :class=>"control-label"
 			.controls
 				= tag_form.collection_select :tag_type_id, TagType.all, :id, :name, :prompt => "Select a Tag Type"

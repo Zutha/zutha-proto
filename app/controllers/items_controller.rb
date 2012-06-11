@@ -1,18 +1,18 @@
 class ItemsController < ApplicationController
-	expose(:tag_name) {
-		tag.try(:name)
-	}
+
 	expose(:filter_name) {
-		if params[:tag]
-			tag_name
+		if params[:item_type]
+			item_type.try(:name)
 		else
 			"Items"
 		end
 	}
 	expose(:items) {
-		filtered = Item
-		if params[:tag]
-			filtered = filtered.joins(:tags).where("lower(tags.name) = ?", params[:tag].downcase )
+		filtered = Item.joins(:tags)
+		TagType.all.each do |tt|
+			if params[tt.url_name].present?
+				filtered = filtered.where("lower(tags.url_name) = ?", params[tt.url_name])
+			end
 		end
 		filtered.by_worth 
 	}
@@ -73,7 +73,7 @@ class ItemsController < ApplicationController
 
 		respond_to do |format|
 			if @item.save
-				format.html { redirect_to items_url(:tag => tag_name), notice: 'Item was successfully created.' }
+				format.html { redirect_to items_url(params), notice: 'Item was successfully created.' }
 				format.json { render json: items, status: :created, location: items_url }
 			else
 				format.html { render action: "new" }
@@ -112,7 +112,7 @@ class ItemsController < ApplicationController
 
 	protected
 
-	def tag 
-		@tag ||= Tag.where("lower(name) = ?", params[:tag].try(:downcase)).first
+	def item_type 
+		@item_type ||= Tag.where("lower(url_name) = ?", params[:item_type].try(:downcase)).first
 	end
 end
