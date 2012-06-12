@@ -8,7 +8,7 @@
 			%ul
 				- tags.each do |t|
 					%li
-						= link_to t.name, items_url(:tag => t.name)
+						= link_to t.name, items_url(t.tag_type.url_name => t.url_name)
 						- if admin?
 							%small= link_to "(edit)", edit_tag_url(t)
 			- if admin?
