@@ -1,12 +1,14 @@
-- title "Edit Tag: '"+_tag.name+"'"
+- title "Edit Tag: '"+@tag.name+"'"
 
 .row
 	.span10.offset1
 		%header
 			%h1 Editing Tag
 
-		= render 'form', :url => tag_path(_tag), :method => :put
-		= link_to "Show Tag", _tag
+		= render 'form', :url => tag_path(@tag), :method => :put
+		= link_to "Show Tag", @tag
 		%br
+		%br
+		= button_to "Delete", tag_path(@tag), :method => :delete, :class=>"btn btn-danger"
 		= link_to 'Back to Tags', tags_path
 

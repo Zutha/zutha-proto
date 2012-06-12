@@ -1,12 +1,12 @@
-= form_for(_tag, :class=>"well") do |tag_form|
+= form_for(@tag, :class=>"well") do |tag_form|
 
-	- if _tag.errors.any?
+	- if @tag.errors.any?
 		#error_explanation
 			%h2 
-				= pluralize(_tag.errors.count, "error")
-				prohibited this _tag from being saved:
+				= pluralize(@tag.errors.count, "error")
+				prohibited this @tag from being saved:
 			%ul
-			- _tag.errors.full_messages.each do |msg|
+			- @tag.errors.full_messages.each do |msg|
 				%li= msg
 
 	%fieldset
@@ -24,4 +24,4 @@
 				= tag_form.collection_select :tag_type_id, TagType.all, :id, :name, :prompt => "Select a Tag Type"
 		.form-actions
 			= tag_form.submit "Submit", :class=>"btn btn-primary"
-			= link_to "Cancel", tags_url, :class=>"btn"
+			= link_to "Cancel", tags_path, :class=>"btn"
